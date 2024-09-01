@@ -87,11 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				850B836A2C81ED0300A48D6D /* IBM_Project_frontendApp.swift */,
-				850B836C2C81ED0300A48D6D /* ContentView.swift */,
-				858FD05F2C8468ED00FEB5C5 /* RunningView.swift */,
-				858FD0612C8468FD00FEB5C5 /* DetailView.swift */,
-				858FD05B2C8467DB00FEB5C5 /* StartView.swift */,
-				858FD05D2C84680400FEB5C5 /* UserInputView.swift */,
+				857AABFC2C847335009BE324 /* AppView */,
+				857AABFB2C8472C4009BE324 /* EventView */,
+				857AABFA2C847293009BE324 /* DetailView */,
 				850B836E2C81ED0400A48D6D /* Assets.xcassets */,
 				850B83702C81ED0400A48D6D /* Preview Content */,
 			);
@@ -104,6 +102,32 @@
 				850B83712C81ED0400A48D6D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		857AABFA2C847293009BE324 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				858FD05F2C8468ED00FEB5C5 /* RunningView.swift */,
+				858FD0612C8468FD00FEB5C5 /* DetailView.swift */,
+			);
+			path = DetailView;
+			sourceTree = "<group>";
+		};
+		857AABFB2C8472C4009BE324 /* EventView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = EventView;
+			sourceTree = "<group>";
+		};
+		857AABFC2C847335009BE324 /* AppView */ = {
+			isa = PBXGroup;
+			children = (
+				850B836C2C81ED0300A48D6D /* ContentView.swift */,
+				858FD05B2C8467DB00FEB5C5 /* StartView.swift */,
+				858FD05D2C84680400FEB5C5 /* UserInputView.swift */,
+			);
+			path = AppView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
