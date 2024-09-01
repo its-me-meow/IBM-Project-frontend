@@ -3,7 +3,7 @@
 //  IBM-Project-frontend Watch App
 //
 //  Created by Suin Kim on 8/30/24.
-//
+
 
 import SwiftUI
 
