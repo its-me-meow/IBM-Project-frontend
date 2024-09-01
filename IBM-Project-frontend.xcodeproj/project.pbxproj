@@ -12,7 +12,8 @@
 		850B836D2C81ED0300A48D6D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B836C2C81ED0300A48D6D /* ContentView.swift */; };
 		850B836F2C81ED0400A48D6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 850B836E2C81ED0400A48D6D /* Assets.xcassets */; };
 		850B83722C81ED0400A48D6D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 850B83712C81ED0400A48D6D /* Preview Assets.xcassets */; };
-		852D18C42C8476910012345B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C32C8476910012345B /* InterfaceController.swift */; };
+		852D18C42C8476910012345B /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C32C8476910012345B /* HealthKitManager.swift */; };
+		852D18C72C8487E20012345B /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C62C8487E20012345B /* EventView.swift */; };
 		858FD05C2C8467DB00FEB5C5 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05B2C8467DB00FEB5C5 /* StartView.swift */; };
 		858FD05E2C84680400FEB5C5 /* UserInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05D2C84680400FEB5C5 /* UserInputView.swift */; };
 		858FD0602C8468ED00FEB5C5 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05F2C8468ED00FEB5C5 /* RunningView.swift */; };
@@ -50,8 +51,9 @@
 		850B836C2C81ED0300A48D6D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		850B836E2C81ED0400A48D6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		850B83712C81ED0400A48D6D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		852D18C32C8476910012345B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		852D18C32C8476910012345B /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		852D18C52C84772C0012345B /* IBM-Project-frontend Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "IBM-Project-frontend Watch App.entitlements"; sourceTree = "<group>"; };
+		852D18C62C8487E20012345B /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		858FD05B2C8467DB00FEB5C5 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		858FD05D2C84680400FEB5C5 /* UserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputView.swift; sourceTree = "<group>"; };
 		858FD05F2C8468ED00FEB5C5 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
@@ -91,7 +93,7 @@
 			children = (
 				852D18C52C84772C0012345B /* IBM-Project-frontend Watch App.entitlements */,
 				850B836A2C81ED0300A48D6D /* IBM_Project_frontendApp.swift */,
-				852D18C32C8476910012345B /* InterfaceController.swift */,
+				852D18C32C8476910012345B /* HealthKitManager.swift */,
 				857AABFC2C847335009BE324 /* AppView */,
 				857AABFB2C8472C4009BE324 /* EventView */,
 				857AABFA2C847293009BE324 /* DetailView */,
@@ -121,6 +123,7 @@
 		857AABFB2C8472C4009BE324 /* EventView */ = {
 			isa = PBXGroup;
 			children = (
+				852D18C62C8487E20012345B /* EventView.swift */,
 			);
 			path = EventView;
 			sourceTree = "<group>";
@@ -238,8 +241,9 @@
 				858FD0602C8468ED00FEB5C5 /* RunningView.swift in Sources */,
 				858FD05C2C8467DB00FEB5C5 /* StartView.swift in Sources */,
 				850B836D2C81ED0300A48D6D /* ContentView.swift in Sources */,
-				852D18C42C8476910012345B /* InterfaceController.swift in Sources */,
+				852D18C42C8476910012345B /* HealthKitManager.swift in Sources */,
 				850B836B2C81ED0300A48D6D /* IBM_Project_frontendApp.swift in Sources */,
+				852D18C72C8487E20012345B /* EventView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,8 +384,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "IBM-Project-frontend";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "앱에서 건강 데이터를 공유하기 위해 HealthKit을 사용합니다.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "앱에서 건강 데이터를 업데이트하기 위해 HealthKit을 사용합니다.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "We need your health data to provide accurate running assistance.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "We need your health data to provide accurate running assistance.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -412,8 +416,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "IBM-Project-frontend";
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "앱에서 건강 데이터를 공유하기 위해 HealthKit을 사용합니다.";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "앱에서 건강 데이터를 업데이트하기 위해 HealthKit을 사용합니다.";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "We need your health data to provide accurate running assistance.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "We need your health data to provide accurate running assistance.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKWatchOnly = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
