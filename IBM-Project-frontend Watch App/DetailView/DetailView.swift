@@ -54,3 +54,14 @@ struct DetailView: View {
 
     @Environment(\.presentationMode) var presentationMode
 }
+
+struct DetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            DetailView(detail: "심전도")
+            DetailView(detail: "체온")
+            DetailView(detail: "경사")
+            DetailView(detail: "심박수")
+        }
+    }
+}
