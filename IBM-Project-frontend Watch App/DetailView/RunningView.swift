@@ -25,7 +25,7 @@ struct RunningView: View {
                     VStack {
                         Image(systemName: "waveform.path.ecg")
                             .resizable()
-                            .frame(width: 50, height: 50)
+                            .frame(width: 20, height: 20)
                         Text("심전도")
                     }
                 }
@@ -35,18 +35,18 @@ struct RunningView: View {
                     VStack {
                         Image(systemName: "thermometer")
                             .resizable()
-                            .frame(width: 50, height: 50)
+                            .frame(width: 20, height: 20)
                         Text("체온")
                     }
                 }
                 .padding()
 
-                NavigationLink(destination: DetailView(detail: "경사")) {
+                NavigationLink(destination: DetailView(detail: "VO2 max")) {
                     VStack {
-                        Image(systemName: "arrow.up.right")
+                        Image(systemName: "lungs.fill")
                             .resizable()
-                            .frame(width: 50, height: 50)
-                        Text("경사")
+                            .frame(width: 20, height: 20)
+                        Text("VO2 max")
                     }
                 }
                 .padding()
@@ -55,7 +55,7 @@ struct RunningView: View {
                     VStack {
                         Image(systemName: "heart.fill")
                             .resizable()
-                            .frame(width: 50, height: 50)
+                            .frame(width: 20, height: 20)
                         Text("심박수")
                     }
                 }

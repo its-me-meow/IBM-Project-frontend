@@ -3,66 +3,56 @@ import Foundation
 import HealthKit
 
 class InterfaceController: WKInterfaceController {
-
-    let healthStore = HKHealthStore()
-
+    @IBOutlet weak var heartRateLabel: WKInterfaceLabel!
+    @IBOutlet weak var temperatureLabel: WKInterfaceLabel!
+    @IBOutlet weak var inclineLabel: WKInterfaceLabel!
+    @IBOutlet weak var paceRecommendationLabel: WKInterfaceLabel!
+    
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
-        requestHealthKitAuthorization()
-    }
-
-    // HealthKit 권한 요청
-    func requestHealthKitAuthorization() {
-        guard HKHealthStore.isHealthDataAvailable() else {
-            print("HealthKit is not available on this device")
-            return
-        }
-
-        let readTypes: Set = [
-            HKObjectType.quantityType(forIdentifier: .heartRate)!
-        ]
-
-        healthStore.requestAuthorization(toShare: nil, read: readTypes) { (success, error) in
-            if let error = error {
-                print("HealthKit authorization error: \(error.localizedDescription)")
-                return
-            }
-
+        
+        // HealthKit 권한 요청
+        HealthKitManager.shared.requestAuthorization { (success, error) in
             if success {
-                print("HealthKit authorization granted")
-                self.readHeartRateData()
+                // 실시간 데이터 수집 시작
+                HealthKitManager.shared.startObservingHealthData()
+                // 데이터 업데이트 알림 등록
+                NotificationCenter.default.addObserver(self, selector: #selector(self.updateHealthData(_:)), name: .didReceiveHealthData, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(self.updatePaceRecommendation(_:)), name: .didReceivePaceRecommendation, object: nil)
             } else {
-                print("HealthKit authorization denied")
+                print("HealthKit authorization failed: \(error?.localizedDescription ?? "Unknown error")")
             }
         }
     }
-
-    // 심박수 데이터 읽기
-    func readHeartRateData() {
-        guard let heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate) else {
-            print("HeartRate type is no longer available in HealthKit")
-            return
+    
+    @objc private func updateHealthData(_ notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let heartRate = userInfo["heartRate"] as? Double,
+           let temperature = userInfo["temperature"] as? Double,
+           let incline = userInfo["incline"] as? Double {
+            heartRateLabel.setText("Heart Rate: \(heartRate) BPM")
+            temperatureLabel.setText("Temperature: \(temperature) °C")
+            inclineLabel.setText("Incline: \(incline) %")
         }
-
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        let query = HKSampleQuery(sampleType: heartRateType, predicate: nil, limit: 10, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
-            if let error = error {
-                print("Error reading heart rate data: \(error.localizedDescription)")
-                return
-            }
-
-            guard let samples = samples as? [HKQuantitySample] else {
-                print("No heart rate samples available")
-                return
-            }
-
-            for sample in samples {
-                let heartRate = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
-                let startDate = sample.startDate
-                print("Heart Rate: \(heartRate) BPM at \(startDate)")
-            }
-        }
-
-        healthStore.execute(query)
     }
+    
+    @objc private func updatePaceRecommendation(_ notification: Notification) {
+        if let userInfo = notification.userInfo,
+           let recommendation = userInfo["recommendation"] as? String {
+            paceRecommendationLabel.setText(recommendation)
+        }
+    }
+    
+    override func willActivate() {
+        super.willActivate()
+    }
+
+    override func didDeactivate() {
+        super.didDeactivate()
+    }
+}
+
+extension Notification.Name {
+    static let didReceiveHealthData = Notification.Name("didReceiveHealthData")
+    static let didReceivePaceRecommendation = Notification.Name("didReceivePaceRecommendation")
 }
