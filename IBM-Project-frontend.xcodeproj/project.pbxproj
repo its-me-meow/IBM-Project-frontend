@@ -23,6 +23,7 @@
 		858FD05E2C84680400FEB5C5 /* UserInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05D2C84680400FEB5C5 /* UserInputView.swift */; };
 		858FD0602C8468ED00FEB5C5 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05F2C8468ED00FEB5C5 /* RunningView.swift */; };
 		858FD0622C8468FD00FEB5C5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD0612C8468FD00FEB5C5 /* DetailView.swift */; };
+		9AB5C1DC2C872ADD00DD27D1 /* CompletionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB5C1DB2C872ADD00DD27D1 /* CompletionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		858FD05D2C84680400FEB5C5 /* UserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputView.swift; sourceTree = "<group>"; };
 		858FD05F2C8468ED00FEB5C5 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
 		858FD0612C8468FD00FEB5C5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		9AB5C1DB2C872ADD00DD27D1 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				852D18C62C8487E20012345B /* EventView.swift */,
+				9AB5C1DB2C872ADD00DD27D1 /* CompletionView.swift */,
 			);
 			path = EventView;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AB5C1DC2C872ADD00DD27D1 /* CompletionView.swift in Sources */,
 				858FD05E2C84680400FEB5C5 /* UserInputView.swift in Sources */,
 				858FD0622C8468FD00FEB5C5 /* DetailView.swift in Sources */,
 				852D18CF2C8492240012345B /* ExampleTests.swift in Sources */,
