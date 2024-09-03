@@ -14,6 +14,9 @@
 		850B83722C81ED0400A48D6D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 850B83712C81ED0400A48D6D /* Preview Assets.xcassets */; };
 		852D18C42C8476910012345B /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C32C8476910012345B /* HealthKitManager.swift */; };
 		852D18C72C8487E20012345B /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C62C8487E20012345B /* EventView.swift */; };
+		852D18CA2C848FAF0012345B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C92C848FAF0012345B /* NetworkManager.swift */; };
+		852D18CC2C8490890012345B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18CB2C8490890012345B /* InterfaceController.swift */; };
+		852D18CF2C8492240012345B /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18CE2C8492240012345B /* ExampleTests.swift */; };
 		858FD05C2C8467DB00FEB5C5 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05B2C8467DB00FEB5C5 /* StartView.swift */; };
 		858FD05E2C84680400FEB5C5 /* UserInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05D2C84680400FEB5C5 /* UserInputView.swift */; };
 		858FD0602C8468ED00FEB5C5 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05F2C8468ED00FEB5C5 /* RunningView.swift */; };
@@ -54,6 +57,9 @@
 		852D18C32C8476910012345B /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		852D18C52C84772C0012345B /* IBM-Project-frontend Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "IBM-Project-frontend Watch App.entitlements"; sourceTree = "<group>"; };
 		852D18C62C8487E20012345B /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
+		852D18C92C848FAF0012345B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		852D18CB2C8490890012345B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		852D18CE2C8492240012345B /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		858FD05B2C8467DB00FEB5C5 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		858FD05D2C84680400FEB5C5 /* UserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputView.swift; sourceTree = "<group>"; };
 		858FD05F2C8468ED00FEB5C5 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
@@ -91,12 +97,15 @@
 		850B83692C81ED0300A48D6D /* IBM-Project-frontend Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				852D18CD2C84920A0012345B /* Test */,
 				852D18C52C84772C0012345B /* IBM-Project-frontend Watch App.entitlements */,
 				850B836A2C81ED0300A48D6D /* IBM_Project_frontendApp.swift */,
 				852D18C32C8476910012345B /* HealthKitManager.swift */,
+				852D18CB2C8490890012345B /* InterfaceController.swift */,
 				857AABFC2C847335009BE324 /* AppView */,
 				857AABFB2C8472C4009BE324 /* EventView */,
 				857AABFA2C847293009BE324 /* DetailView */,
+				852D18C82C848F900012345B /* Network */,
 				850B836E2C81ED0400A48D6D /* Assets.xcassets */,
 				850B83702C81ED0400A48D6D /* Preview Content */,
 			);
@@ -109,6 +118,22 @@
 				850B83712C81ED0400A48D6D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		852D18C82C848F900012345B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				852D18C92C848FAF0012345B /* NetworkManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		852D18CD2C84920A0012345B /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				852D18CE2C8492240012345B /* ExampleTests.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		857AABFA2C847293009BE324 /* DetailView */ = {
@@ -238,9 +263,12 @@
 			files = (
 				858FD05E2C84680400FEB5C5 /* UserInputView.swift in Sources */,
 				858FD0622C8468FD00FEB5C5 /* DetailView.swift in Sources */,
+				852D18CF2C8492240012345B /* ExampleTests.swift in Sources */,
 				858FD0602C8468ED00FEB5C5 /* RunningView.swift in Sources */,
 				858FD05C2C8467DB00FEB5C5 /* StartView.swift in Sources */,
 				850B836D2C81ED0300A48D6D /* ContentView.swift in Sources */,
+				852D18CC2C8490890012345B /* InterfaceController.swift in Sources */,
+				852D18CA2C848FAF0012345B /* NetworkManager.swift in Sources */,
 				852D18C42C8476910012345B /* HealthKitManager.swift in Sources */,
 				850B836B2C81ED0300A48D6D /* IBM_Project_frontendApp.swift in Sources */,
 				852D18C72C8487E20012345B /* EventView.swift in Sources */,
@@ -381,6 +409,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IBM-Project-frontend Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 2RNTUQ6XK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "IBM-Project-frontend";
@@ -413,6 +442,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"IBM-Project-frontend Watch App/Preview Content\"";
+				DEVELOPMENT_TEAM = 2RNTUQ6XK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "IBM-Project-frontend";
@@ -443,6 +473,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2RNTUQ6XK4;
 				INFOPLIST_KEY_CFBundleDisplayName = "IBM-Project-frontend";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ill.IBM-Project-frontend";
@@ -458,6 +489,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2RNTUQ6XK4;
 				INFOPLIST_KEY_CFBundleDisplayName = "IBM-Project-frontend";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ill.IBM-Project-frontend";
