@@ -1,14 +1,9 @@
-//
-//  RunningView.swift
-//  IBM-Project-frontend Watch App
-//
-//  Created by Suin Kim on 9/1/24.
-//
-
 import SwiftUI
 
 struct RunningView: View {
     var distance: Double
+    @State private var timer: Timer?
+    @State private var pace: String = "Loading..."
 
     var body: some View {
         VStack {
@@ -18,6 +13,10 @@ struct RunningView: View {
 
             Text("Goal: \(distance, specifier: "%.1f") km")
                 .font(.largeTitle)
+                .padding()
+            
+            Text("Pace: \(pace)")
+                .font(.title)
                 .padding()
 
             HStack {
@@ -62,5 +61,44 @@ struct RunningView: View {
                 .padding()
             }
         }
+        .onAppear {
+            startTimer()
+        }
+        .onDisappear {
+            stopTimer()
+        }
+    }
+
+    private func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { _ in
+            // 여기서 실시간 건강 데이터를 가져와 백엔드로 전송합니다.
+            let ecg = 0.0 // Replace with real data
+            let temperature = 0.0 // Replace with real data
+            let vo2Max = 0.0 // Replace with real data
+            let heartRate = 0.0 // Replace with real data
+            let incline = 0.0 // Replace with real data
+            
+            NetworkManager.shared.sendHealthData(ecg: ecg, temperature: temperature, vo2Max: vo2Max, heartRate: heartRate, incline: incline) { success, error in
+                if success {
+                    // 페이스 조절 권장 사항을 받아옴
+                    NetworkManager.shared.fetchPaceRecommendation { recommendation, error in
+                        if let recommendation = recommendation {
+                            DispatchQueue.main.async {
+                                pace = recommendation
+                            }
+                        } else {
+                            print("Failed to fetch pace recommendation: \(error?.localizedDescription ?? "Unknown error")")
+                        }
+                    }
+                } else {
+                    print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
+                }
+            }
+        }
+    }
+
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
     }
 }
