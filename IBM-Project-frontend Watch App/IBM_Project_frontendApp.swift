@@ -11,7 +11,7 @@ import SwiftUI
 struct IBM_Project_frontend_Watch_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView()
         }
     }
 }
