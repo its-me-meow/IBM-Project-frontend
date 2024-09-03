@@ -43,7 +43,13 @@ class HealthKitManager {
                     let incline = self?.getIncline() // 경사도를 가져오는 로직 추가
 
                     // NetworkManager를 통해 데이터를 백엔드로 전송
-                    NetworkManager.shared.sendHealthData(heartRate: heartRate ?? 0, temperature: temperature ?? 0, incline: incline ?? 0) { (success: Bool, error: Error?) in
+                    NetworkManager.shared.sendHealthData(
+                        ecg : heartRate ?? 0,
+                        temperature: heartRate ?? 0,
+                        vo2Max: incline ?? 0,// 정확한 매개변수 이름 사용
+                        heartRate: temperature ?? 0,
+                        incline: incline ?? 0
+                    ) { (success: Bool, error: Error?) in
                         if success {
                             self?.fetchPaceRecommendation() // 페이스 조절 권장 사항을 요청
                             // 실시간 데이터 업데이트 알림
@@ -56,6 +62,7 @@ class HealthKitManager {
                             print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
                         }
                     }
+                    
                 }
                 completionHandler()
             })
