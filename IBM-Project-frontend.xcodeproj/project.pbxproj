@@ -17,6 +17,8 @@
 		852D18CA2C848FAF0012345B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C92C848FAF0012345B /* NetworkManager.swift */; };
 		852D18CC2C8490890012345B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18CB2C8490890012345B /* InterfaceController.swift */; };
 		852D18CF2C8492240012345B /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18CE2C8492240012345B /* ExampleTests.swift */; };
+		8538526C2C87012A00EE646B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538526B2C87012A00EE646B /* SplashScreenView.swift */; };
+		8538526E2C87015F00EE646B /* DistanceGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538526D2C87015F00EE646B /* DistanceGoalView.swift */; };
 		858FD05C2C8467DB00FEB5C5 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05B2C8467DB00FEB5C5 /* StartView.swift */; };
 		858FD05E2C84680400FEB5C5 /* UserInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05D2C84680400FEB5C5 /* UserInputView.swift */; };
 		858FD0602C8468ED00FEB5C5 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05F2C8468ED00FEB5C5 /* RunningView.swift */; };
@@ -60,6 +62,8 @@
 		852D18C92C848FAF0012345B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		852D18CB2C8490890012345B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		852D18CE2C8492240012345B /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
+		8538526B2C87012A00EE646B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		8538526D2C87015F00EE646B /* DistanceGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceGoalView.swift; sourceTree = "<group>"; };
 		858FD05B2C8467DB00FEB5C5 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		858FD05D2C84680400FEB5C5 /* UserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputView.swift; sourceTree = "<group>"; };
 		858FD05F2C8468ED00FEB5C5 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				850B836C2C81ED0300A48D6D /* ContentView.swift */,
 				858FD05B2C8467DB00FEB5C5 /* StartView.swift */,
 				858FD05D2C84680400FEB5C5 /* UserInputView.swift */,
+				8538526B2C87012A00EE646B /* SplashScreenView.swift */,
+				8538526D2C87015F00EE646B /* DistanceGoalView.swift */,
 			);
 			path = AppView;
 			sourceTree = "<group>";
@@ -264,6 +270,7 @@
 				858FD05E2C84680400FEB5C5 /* UserInputView.swift in Sources */,
 				858FD0622C8468FD00FEB5C5 /* DetailView.swift in Sources */,
 				852D18CF2C8492240012345B /* ExampleTests.swift in Sources */,
+				8538526E2C87015F00EE646B /* DistanceGoalView.swift in Sources */,
 				858FD0602C8468ED00FEB5C5 /* RunningView.swift in Sources */,
 				858FD05C2C8467DB00FEB5C5 /* StartView.swift in Sources */,
 				850B836D2C81ED0300A48D6D /* ContentView.swift in Sources */,
@@ -272,6 +279,7 @@
 				852D18C42C8476910012345B /* HealthKitManager.swift in Sources */,
 				850B836B2C81ED0300A48D6D /* IBM_Project_frontendApp.swift in Sources */,
 				852D18C72C8487E20012345B /* EventView.swift in Sources */,
+				8538526C2C87012A00EE646B /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

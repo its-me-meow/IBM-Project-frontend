@@ -80,9 +80,22 @@ struct DetailView: View {
             }
             
             Spacer()
-        }
+            
+            // 돌아가기 버튼
+            Button(action: {
+                // 현재 네비게이션 스택에서 이전 화면으로 돌아가기
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Text("Back")
+                    .font(.title)
+                    .padding()
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+            }
+            .padding()        }
     }
-
+    
     @Environment(\.presentationMode) var presentationMode
     
     // HealthKit 권한 요청
@@ -170,5 +183,11 @@ struct DetailView: View {
             }
         }
         healthStore.execute(query)
+    }
+}
+
+struct DetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        DetailView(detail: "")
     }
 }
