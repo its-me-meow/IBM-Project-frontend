@@ -1,57 +1,68 @@
-
 import SwiftUI
 
 struct UserInputView: View {
     @State private var gender: String = "여"
-    @State private var age: Int = 20
+    @State private var age: Int = 20  // Picker로 입력받기 위해 Int로 변경
     @State private var height: Int = 170
     @State private var weight: Int = 60
+    @State private var runningLevel: String = "초보자"
+    @State private var distance: Double = 5.0
+    @State private var isDataSent: Bool = false
     
-    let genders = ["남", "여"]
+    let genders = ["남", "여", "none"]
+    let runningLevels = ["초보자", "중급자", "숙련자"]
     
     var body: some View {
-        NavigationView { // NavigationView 추가
-            Form { // Form을 NavigationView 바로 아래에 사용
-                Section(header: Text("측정에 필요한 정보를 입력해 주세요").font(.headline)) {
-                    Picker("성별", selection: $gender) {
-                        ForEach(genders, id: \.self) { gender in
-                            Text(gender)
-                        }
-                    }
+        VStack {
+            Text("사용자 입력")
+                .font(.headline)
+                .padding(.top) // 상단 여백 추가
 
-                    Picker("나이", selection: $age) {
-                        ForEach(10...100, id: \.self) { age in
-                            Text("\(age) 세")
-                        }
-                    }
-
-                    Picker("신장", selection: $height) {
-                        ForEach(140...220, id: \.self) { height in
-                            Text("\(height) cm")
-                        }
-                    }
-
-                    Picker("몸무게", selection: $weight) {
-                        ForEach(40...150, id: \.self) { weight in
-                            Text("\(weight) kg")
-                        }
+            Form {
+                Picker("성별", selection: $gender) {
+                    ForEach(genders, id: \.self) { gender in
+                        Text(gender)
                     }
                 }
 
-                Section {
-                    NavigationLink(destination: DistanceGoalView()) {
-                        Text("다음")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity, alignment: .center) // 버튼 너비를 최대화
-                            .padding()
-                            .background(Color.green)
-                            .foregroundColor(.white)
-                            .cornerRadius(10)
+                Picker("나이", selection: $age) {
+                    ForEach(10...100, id: \.self) { age in
+                        Text("\(age) 세")
                     }
-                    .buttonStyle(PlainButtonStyle()) // watchOS에서는 기본 버튼 스타일을 사용하지 않도록 설정
+                }
+
+                Picker("러닝 수준", selection: $runningLevel) {
+                    ForEach(runningLevels, id: \.self) { level in
+                        Text(level)
+                    }
+                }
+
+                HStack {
+                    Text("목표 거리: \(distance, specifier: "%.1f") km")
+                    Slider(value: $distance, in: 1...100, step: 0.1)
                 }
             }
-            .navigationTitle("입력") // NavigationView의 타이틀 설정
+            
+            Button(action: {
+                // 초기 데이터를 백엔드로 전송
+                NetworkManager.shared.sendInitialData(gender: gender, age: age, distance: distance, runningLevel: runningLevel) { success, error in
+                    if success {
+                        DispatchQueue.main.async {
+                            isDataSent = true
+                        }
+                    } else {
+                        print("Failed to send initial data: \(error?.localizedDescription ?? "Unknown error")")
+                    }
+                }
+            }) {
+                Text("데이터 전송")
+                    .font(.headline)
+                    .padding()
+                    .background(isDataSent ? Color.gray : Color.green)
+                    .cornerRadius(10)
+                    .foregroundColor(.white)
+            }
+            .disabled(isDataSent) // 데이터가 전송된 후 버튼 비활성화
         }
     }
 }
