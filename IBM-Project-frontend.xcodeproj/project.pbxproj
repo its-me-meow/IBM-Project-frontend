@@ -9,17 +9,13 @@
 /* Begin PBXBuildFile section */
 		850B83662C81ED0300A48D6D /* IBM-Project-frontend Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 850B83652C81ED0300A48D6D /* IBM-Project-frontend Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		850B836B2C81ED0300A48D6D /* IBM_Project_frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B836A2C81ED0300A48D6D /* IBM_Project_frontendApp.swift */; };
-		850B836D2C81ED0300A48D6D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B836C2C81ED0300A48D6D /* ContentView.swift */; };
 		850B836F2C81ED0400A48D6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 850B836E2C81ED0400A48D6D /* Assets.xcassets */; };
 		850B83722C81ED0400A48D6D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 850B83712C81ED0400A48D6D /* Preview Assets.xcassets */; };
 		852D18C42C8476910012345B /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C32C8476910012345B /* HealthKitManager.swift */; };
-		852D18C72C8487E20012345B /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C62C8487E20012345B /* EventView.swift */; };
 		852D18CA2C848FAF0012345B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C92C848FAF0012345B /* NetworkManager.swift */; };
 		852D18CC2C8490890012345B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18CB2C8490890012345B /* InterfaceController.swift */; };
 		852D18CF2C8492240012345B /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18CE2C8492240012345B /* ExampleTests.swift */; };
 		8538526C2C87012A00EE646B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538526B2C87012A00EE646B /* SplashScreenView.swift */; };
-		8538526E2C87015F00EE646B /* DistanceGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538526D2C87015F00EE646B /* DistanceGoalView.swift */; };
-		858FD05C2C8467DB00FEB5C5 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05B2C8467DB00FEB5C5 /* StartView.swift */; };
 		858FD05E2C84680400FEB5C5 /* UserInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05D2C84680400FEB5C5 /* UserInputView.swift */; };
 		858FD0602C8468ED00FEB5C5 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD05F2C8468ED00FEB5C5 /* RunningView.swift */; };
 		858FD0622C8468FD00FEB5C5 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858FD0612C8468FD00FEB5C5 /* DetailView.swift */; };
@@ -54,18 +50,14 @@
 		850B835F2C81ED0300A48D6D /* IBM-Project-frontend.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IBM-Project-frontend.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		850B83652C81ED0300A48D6D /* IBM-Project-frontend Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IBM-Project-frontend Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		850B836A2C81ED0300A48D6D /* IBM_Project_frontendApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IBM_Project_frontendApp.swift; sourceTree = "<group>"; };
-		850B836C2C81ED0300A48D6D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		850B836E2C81ED0400A48D6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		850B83712C81ED0400A48D6D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		852D18C32C8476910012345B /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		852D18C52C84772C0012345B /* IBM-Project-frontend Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "IBM-Project-frontend Watch App.entitlements"; sourceTree = "<group>"; };
-		852D18C62C8487E20012345B /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		852D18C92C848FAF0012345B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		852D18CB2C8490890012345B /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
 		852D18CE2C8492240012345B /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
 		8538526B2C87012A00EE646B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
-		8538526D2C87015F00EE646B /* DistanceGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistanceGoalView.swift; sourceTree = "<group>"; };
-		858FD05B2C8467DB00FEB5C5 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		858FD05D2C84680400FEB5C5 /* UserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputView.swift; sourceTree = "<group>"; };
 		858FD05F2C8468ED00FEB5C5 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
 		858FD0612C8468FD00FEB5C5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
@@ -154,7 +146,6 @@
 		857AABFB2C8472C4009BE324 /* EventView */ = {
 			isa = PBXGroup;
 			children = (
-				852D18C62C8487E20012345B /* EventView.swift */,
 				9AB5C1DB2C872ADD00DD27D1 /* CompletionView.swift */,
 			);
 			path = EventView;
@@ -163,11 +154,8 @@
 		857AABFC2C847335009BE324 /* AppView */ = {
 			isa = PBXGroup;
 			children = (
-				850B836C2C81ED0300A48D6D /* ContentView.swift */,
-				858FD05B2C8467DB00FEB5C5 /* StartView.swift */,
 				858FD05D2C84680400FEB5C5 /* UserInputView.swift */,
 				8538526B2C87012A00EE646B /* SplashScreenView.swift */,
-				8538526D2C87015F00EE646B /* DistanceGoalView.swift */,
 			);
 			path = AppView;
 			sourceTree = "<group>";
@@ -274,15 +262,11 @@
 				858FD05E2C84680400FEB5C5 /* UserInputView.swift in Sources */,
 				858FD0622C8468FD00FEB5C5 /* DetailView.swift in Sources */,
 				852D18CF2C8492240012345B /* ExampleTests.swift in Sources */,
-				8538526E2C87015F00EE646B /* DistanceGoalView.swift in Sources */,
 				858FD0602C8468ED00FEB5C5 /* RunningView.swift in Sources */,
-				858FD05C2C8467DB00FEB5C5 /* StartView.swift in Sources */,
-				850B836D2C81ED0300A48D6D /* ContentView.swift in Sources */,
 				852D18CC2C8490890012345B /* InterfaceController.swift in Sources */,
 				852D18CA2C848FAF0012345B /* NetworkManager.swift in Sources */,
 				852D18C42C8476910012345B /* HealthKitManager.swift in Sources */,
 				850B836B2C81ED0300A48D6D /* IBM_Project_frontendApp.swift in Sources */,
-				852D18C72C8487E20012345B /* EventView.swift in Sources */,
 				8538526C2C87012A00EE646B /* SplashScreenView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
