@@ -1,16 +1,17 @@
 import SwiftUI
 
 struct UserInputView: View {
+
     @State private var gender: String = "여"
     @State private var age: Int = 20
     @State private var runningLevel: String = "초보자"
-    @State private var distance: Double = 5.0
-    
+    @State private var distance: Int = 5
+
     let genders = ["남", "여"]
     let runningLevels = ["초보자", "중급자", "숙련자"]
-    
+
     var body: some View {
-        NavigationView {  // NavigationView로 감싸기
+        NavigationView {
             VStack {
                 Text("사용자 입력")
                     .font(.headline)
@@ -36,8 +37,12 @@ struct UserInputView: View {
                     }
                     
                     HStack {
-                        Text("목표 거리: \(distance, specifier: "%.1f") km")
-                        Slider(value: $distance, in: 1...100, step: 0.5)
+                        Text("목표 거리: \(distance) km")
+                        Slider(value: Binding(get: {
+                            Double(distance)
+                        }, set: { newValue in
+                            distance = Int(newValue)
+                        }), in: 1...100, step: 1.0)
                     }
                     
                     NavigationLink(destination: RunningView(distance: distance)) {
@@ -50,7 +55,6 @@ struct UserInputView: View {
                     }
                 }
             }
-
         }
     }
 }

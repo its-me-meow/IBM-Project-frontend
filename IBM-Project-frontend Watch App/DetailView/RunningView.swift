@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RunningView: View {
-    var distance: Double
+    var distance: Int
     @State private var timer: Timer?
     @State private var pace: String = "Loading..."
 
@@ -11,7 +11,7 @@ struct RunningView: View {
                 .font(.headline)
                 .padding()
 
-            Text("Goal: \(distance, specifier: "%.1f") km")
+            Text("Goal: \(distance) km")
                 .font(.largeTitle)
                 .padding()
             
@@ -20,12 +20,12 @@ struct RunningView: View {
                 .padding()
 
             HStack {
-                NavigationLink(destination: DetailView(detail: "심전도")) {
+                NavigationLink(destination: DetailView(detail: "경사")) {
                     VStack {
-                        Image(systemName: "waveform.path.ecg")
+                        Image(systemName: "arrow.up.right.circle")
                             .resizable()
                             .frame(width: 20, height: 20)
-                        Text("심전도")
+                        Text("경사")
                     }
                 }
                 .padding()
@@ -71,16 +71,14 @@ struct RunningView: View {
 
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { _ in
-            // 여기서 실시간 건강 데이터를 가져와 백엔드로 전송합니다.
-            let ecg = 0.0 // Replace with real data
-            let temperature = 0.0 // Replace with real data
-            let vo2Max = 0.0 // Replace with real data
-            let heartRate = 0.0 // Replace with real data
-            let incline = 0.0 // Replace with real data
-            
-            NetworkManager.shared.sendHealthData(ecg: ecg, temperature: temperature, vo2Max: vo2Max, heartRate: heartRate, incline: incline) { success, error in
+            let heartRate = 0 // Replace with real data
+            let incline = 0 // Replace with real data
+            let distanceCovered = 0.0 // Replace with real data
+            let vo2max = 0 // Replace with real data
+            let time = "\(Date())" // Current time as a string
+
+            NetworkManager.shared.sendHealthData(heartRate: heartRate, incline: incline, distanceCovered: distanceCovered, vo2max: vo2max, time: time) { success, error in
                 if success {
-                    // 페이스 조절 권장 사항을 받아옴
                     NetworkManager.shared.fetchPaceRecommendation { recommendation, error in
                         if let recommendation = recommendation {
                             DispatchQueue.main.async {
