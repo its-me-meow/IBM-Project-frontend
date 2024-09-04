@@ -1,25 +1,19 @@
-//import XCTest
-//import HealthKit
-//@testable import YourApp
-//
-//class ExampleTests: XCTestCase {
-//
-//    func testHeartRateFetching() {
-//        let expectation = self.expectation(description: "Heart Rate Fetching")
-//        HealthKitManager.shared.fetchLatestHeartRateSample { sample in
-//            XCTAssertNotNil(sample, "Heart rate sample should not be nil")
-//            expectation.fulfill()
-//        }
-//        waitForExpectations(timeout: 5, handler: nil)
-//    }
-//
-//    func testPaceRecommendationFetching() {
-//        let expectation = self.expectation(description: "Pace Recommendation Fetching")
-//        NetworkManager.shared.fetchPaceRecommendation { recommendation, error in
-//            XCTAssertNotNil(recommendation, "Pace recommendation should not be nil")
-//            XCTAssertNil(error, "Error should be nil")
-//            expectation.fulfill()
-//        }
-//        waitForExpectations(timeout: 5, handler: nil)
-//    }
-//}
+import XCTest
+@testable import IBM_Project_frontend_Watch_App // 실제 앱 모듈 이름으로 변경
+
+class ExampleTests: XCTestCase {
+
+    func testSendingFakeData() {
+        let expectation = self.expectation(description: "Sending fake data to backend")
+
+        let fakeDataSender = FakeDataSender()
+        fakeDataSender.startSendingFakeData()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
+            fakeDataSender.stopSendingFakeData()
+            expectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 70, handler: nil)
+    }
+}
