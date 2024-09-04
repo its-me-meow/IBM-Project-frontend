@@ -65,7 +65,7 @@ class FakeDataSender {
         ["timestamp": "2024-09-04T10:00:58Z", "heartRate": 143, "incline": 3, "distanceCovered": 0.58, "vo2max": 39],
         ["timestamp": "2024-09-04T10:00:59Z", "heartRate": 144, "incline": 3, "distanceCovered": 0.59, "vo2max": 39]
     ]
-
+    
     func startSendingFakeData() {
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             if self.dataIndex < self.fakeData.count {
@@ -77,12 +77,12 @@ class FakeDataSender {
             }
         }
     }
-
+    
     func stopSendingFakeData() {
         timer?.invalidate()
         timer = nil
     }
-
+    
     private func sendData(data: [String: Any]) {
         guard let heartRate = data["heartRate"] as? Int,
               let incline = data["incline"] as? Int,
@@ -91,8 +91,18 @@ class FakeDataSender {
               let time = data["timestamp"] as? String else {
             return
         }
-
-        NetworkManager.shared.sendHealthData(heartRate: heartRate, incline: incline, distanceCovered: distanceCovered, vo2max: vo2max, time: time) { success, error in
+        
+        print("Sending data: \(data)")  // 네트워크 요청 전 로그 출력
+        
+        NetworkManager.shared.sendHealthData(
+            ecg: Double(heartRate),
+            temperature: Double(incline),
+            vo2Max: Double(vo2max),
+            heartRate: heartRate,
+            incline: incline,
+            distanceCovered: distanceCovered,
+            time: time
+        ) { success, error in
             if success {
                 print("Data sent successfully: \(data)")
             } else {
@@ -100,4 +110,5 @@ class FakeDataSender {
             }
         }
     }
+    
 }

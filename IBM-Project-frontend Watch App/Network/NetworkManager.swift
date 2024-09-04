@@ -35,16 +35,18 @@ class NetworkManager {
         task.resume()
     }
 
-    func sendHealthData(heartRate: Int, incline: Int, distanceCovered: Double, vo2max: Int, time: String, completion: @escaping (Bool, Error?) -> Void) {
+    func sendHealthData(ecg: Double, temperature: Double, vo2Max: Double, heartRate: Int, incline: Int, distanceCovered: Double, time: String, completion: @escaping (Bool, Error?) -> Void) {
         var request = URLRequest(url: baseURL.appendingPathComponent("/health-data"))
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let body: [String: Any] = [
+            "ecg": ecg,
+            "temperature": temperature,
+            "vo2Max": vo2Max,
             "heartRate": heartRate,
             "incline": incline,
             "distanceCovered": distanceCovered,
-            "vo2max": vo2max,
             "time": time
         ]
         

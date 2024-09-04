@@ -77,7 +77,15 @@ struct RunningView: View {
             let vo2max = 0 // Replace with real data
             let time = "\(Date())" // Current time as a string
 
-            NetworkManager.shared.sendHealthData(heartRate: heartRate, incline: incline, distanceCovered: distanceCovered, vo2max: vo2max, time: time) { success, error in
+            NetworkManager.shared.sendHealthData(
+                ecg: Double(heartRate),
+                temperature: Double(incline),
+                vo2Max: Double(vo2max),
+                heartRate: heartRate,
+                incline: incline,
+                distanceCovered: distanceCovered,
+                time: time
+            ) { success, error in
                 if success {
                     NetworkManager.shared.fetchPaceRecommendation { recommendation, error in
                         if let recommendation = recommendation {

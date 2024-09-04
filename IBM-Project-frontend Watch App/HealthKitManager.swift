@@ -46,21 +46,23 @@ class HealthKitManager {
                         ecg: heartRate ?? 0,
                         temperature: temperature ?? 0,
                         vo2Max: 0, // Replace with real data if available
-                        heartRate: heartRate ?? 0,
-                        incline: incline ?? 0,
-                        time: time
-                    ) { (success: Bool, error: Error?) in
-                        if success {
-                            self?.fetchPaceRecommendation()
-                            NotificationCenter.default.post(name: .didReceiveHealthData, object: nil, userInfo: [
-                                "heartRate": heartRate ?? 0,
-                                "temperature": temperature ?? 0,
-                                "incline": incline ?? 0
-                            ])
-                        } else {
-                            print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
+                        heartRate: Int(heartRate ?? 0),
+                        incline: Int(incline ?? 0),
+                        distanceCovered: 0.0, // Replace with real data if available
+                        time: time,
+                        completion: { (success: Bool, error: Error?) in
+                            if success {
+                                self?.fetchPaceRecommendation()
+                                NotificationCenter.default.post(name: .didReceiveHealthData, object: nil, userInfo: [
+                                    "heartRate": heartRate ?? 0,
+                                    "temperature": temperature ?? 0,
+                                    "incline": incline ?? 0
+                                ])
+                            } else {
+                                print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
+                            }
                         }
-                    }
+                    )
                 }
                 completionHandler()
             })
@@ -89,21 +91,23 @@ class HealthKitManager {
                         ecg: heartRate ?? 0,
                         temperature: temperature ?? 0,
                         vo2Max: 0, // Replace with real data if available
-                        heartRate: heartRate ?? 0,
-                        incline: incline ?? 0,
-                        time: time
-                    ) { (success: Bool, error: Error?) in
-                        if success {
-                            self?.fetchPaceRecommendation()
-                            NotificationCenter.default.post(name: .didReceiveHealthData, object: nil, userInfo: [
-                                "heartRate": heartRate ?? 0,
-                                "temperature": temperature ?? 0,
-                                "incline": incline ?? 0
-                            ])
-                        } else {
-                            print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
+                        heartRate: Int(heartRate ?? 0),
+                        incline: Int(incline ?? 0),
+                        distanceCovered: 0.0, // Replace with real data if available
+                        time: time,
+                        completion: { (success: Bool, error: Error?) in
+                            if success {
+                                self?.fetchPaceRecommendation()
+                                NotificationCenter.default.post(name: .didReceiveHealthData, object: nil, userInfo: [
+                                    "heartRate": heartRate ?? 0,
+                                    "temperature": temperature ?? 0,
+                                    "incline": incline ?? 0
+                                ])
+                            } else {
+                                print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
+                            }
                         }
-                    }
+                    )
                 }
                 completionHandler()
             })

@@ -1,5 +1,5 @@
 import XCTest
-@testable import IBM-Project-frontend; // 실제 앱 모듈 이름으로 변경
+@testable import IBM_Project_frontend_Watch_App // 실제 앱 모듈 이름으로 변경
 
 class ExampleTests: XCTestCase {
 
