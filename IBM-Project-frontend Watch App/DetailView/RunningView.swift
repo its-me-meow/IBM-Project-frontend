@@ -1,4 +1,6 @@
 import SwiftUI
+import UserNotifications
+import AVFoundation
 
 struct RunningView: View {
     var distance: Double
@@ -61,11 +63,14 @@ struct RunningView: View {
         .onAppear {
             startFakeDataSender()
             NotificationCenter.default.addObserver(forName: .didReceivePaceRecommendation, object: nil, queue: .main) { notification in
-                if let userInfo = notification.userInfo, let newRecommendation = userInfo["recommendation"] as? String {
+                if let userInfo = notification.userInfo, let recommendationDict = userInfo["recommendation"] as? String {
+                    let newRecommendation = self.parseRecommendation(recommendationDict)
                     if self.previousRecommendation != newRecommendation {
                         self.recommendation = newRecommendation
                         self.previousRecommendation = newRecommendation
                         self.isNotificationActive = true
+                        self.sendNotification(with: newRecommendation)
+                        self.speakRecommendation(newRecommendation)
                     }
                 }
             }
@@ -82,6 +87,33 @@ struct RunningView: View {
 
     private func stopFakeDataSender() {
         fakeDataSender.stopSendingFakeData()
+    }
+    
+    private func parseRecommendation(_ recommendationDict: String) -> String {
+        // JSON 문자열에서 recommendation 값만 추출
+        if let data = recommendationDict.data(using: .utf8),
+           let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
+           let recommendation = json["recommendation"] {
+            return recommendation
+        }
+        return recommendationDict
+    }
+
+    private func sendNotification(with text: String) {
+        let content = UNMutableNotificationContent()
+        content.title = "페이스 변경 알림"
+        content.body = text
+        content.sound = UNNotificationSound.default
+
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: nil)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+    }
+
+    private func speakRecommendation(_ text: String) {
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
     }
 }
 
