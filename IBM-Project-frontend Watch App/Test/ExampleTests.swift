@@ -7,7 +7,7 @@ class ExampleTests: XCTestCase {
         let expectation = self.expectation(description: "Sending fake data to backend")
 
         let fakeDataSender = FakeDataSender()
-        fakeDataSender.startSendingFakeData()
+        fakeDataSender.startSendingFakeData(age: 25, gender: "male", experience: "beginner", goalDistance: 5.0)
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
             fakeDataSender.stopSendingFakeData()

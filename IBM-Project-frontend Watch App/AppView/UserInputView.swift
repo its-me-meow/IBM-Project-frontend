@@ -15,10 +15,6 @@ struct UserInputView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("사용자 입력")
-                    .font(.headline)
-                    .padding(.top)
-                
                 Form {
                     Picker("성별", selection: $gender) {
                         ForEach(genders, id: \.self) { gender in
@@ -40,24 +36,23 @@ struct UserInputView: View {
                     
                     HStack {
                         Text("목표 거리: \(goalDistance, specifier: "%.1f") km")
-                        Slider(value: $goalDistance, in: 1...100, step: 0.1)
-                    }
-                    
-                    Button(action: {
-                        print("Running start button tapped") // 버튼 클릭 로그 출력
-                        fakeDataSender.startSendingFakeData(age: age, gender: gender, experience: experience, goalDistance: goalDistance) // 러닝 시작 시 FakeDataSender 호출
-                        isRunningViewActive = true
-                    }) {
-                        Text("러닝 시작")
-                            .font(.headline)
-                            .padding()
-                            .background(Color.green)
-                            .cornerRadius(10)
-                            .foregroundColor(.white)
+                        Slider(value: $goalDistance, in: 1...100, step: 0.5)
                     }
                     
                     NavigationLink(destination: RunningView(distance: goalDistance), isActive: $isRunningViewActive) {
-                        EmptyView()
+                        Button(action: {
+                            print("Running start button tapped") // 버튼 클릭 로그 출력
+                            fakeDataSender.startSendingFakeData(age: age, gender: gender, experience: experience, goalDistance: goalDistance) // 러닝 시작 시 FakeDataSender 호출
+                            isRunningViewActive = true
+                        }) {
+                            Text("러닝 시작")
+                                .font(.headline)
+                                .padding()
+                                .background(Color.green)
+                                .cornerRadius(10)
+                                .foregroundColor(.white)
+                                .frame(width: 180, height: 40)
+                        }
                     }
                 }
             }
