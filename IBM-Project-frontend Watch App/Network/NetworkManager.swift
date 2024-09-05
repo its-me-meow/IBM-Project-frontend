@@ -2,52 +2,22 @@ import Foundation
 
 class NetworkManager {
     static let shared = NetworkManager()
-    private let baseURL = URL(string: "http://localhost:3000/api/send-data")!
+    private let baseURL = URL(string: "https://42171c02-b743-4f5e-806a-2f13e9043369-00-szxespj90i05.pike.replit.dev/api/send-data")!
 
-    func sendInitialData(gender: String, age: Int, distance: Int, runningLevel: String, completion: @escaping (Bool, Error?) -> Void) {
-        var request = URLRequest(url: baseURL.appendingPathComponent("/initial-data"))
+    func sendHealthData(timestamp: String, age: Int, gender: String, heartRate: Double, incline: Double, experience: String, goalDistance: Double, distanceCovered: Double, completion: @escaping (Bool, Error?) -> Void) {
+        var request = URLRequest(url: baseURL.appendingPathComponent("/"))
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 
         let body: [String: Any] = [
-            "gender": gender,
+            "timestamp": timestamp,
             "age": age,
-            "goalDistance": distance,
-            "experience": runningLevel
-        ]
-        
-        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion(false, error)
-                return
-            }
-
-            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
-                completion(false, nil)
-                return
-            }
-
-            completion(true, nil)
-        }
-
-        task.resume()
-    }
-
-    func sendHealthData(ecg: Double, temperature: Double, vo2Max: Double, heartRate: Int, incline: Int, distanceCovered: Double, time: String, completion: @escaping (Bool, Error?) -> Void) {
-        var request = URLRequest(url: baseURL.appendingPathComponent("/health-data"))
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
-        let body: [String: Any] = [
-            "ecg": ecg,
-            "temperature": temperature,
-            "vo2Max": vo2Max,
+            "gender": gender,
             "heartRate": heartRate,
             "incline": incline,
-            "distanceCovered": distanceCovered,
-            "time": time
+            "experience": experience,
+            "goalDistance": goalDistance,
+            "distanceCovered": distanceCovered
         ]
         
         request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])

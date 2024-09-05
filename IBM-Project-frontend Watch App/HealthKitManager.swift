@@ -40,29 +40,29 @@ class HealthKitManager {
                     let temperature = self?.getBodyTemperature()
                     let incline = self?.getIncline(from: sample)
 
-                    let time = "\(Date())"
+                    let timestamp = "\(Date())" // Current time as a string
 
                     NetworkManager.shared.sendHealthData(
-                        ecg: heartRate ?? 0,
-                        temperature: temperature ?? 0,
-                        vo2Max: 0, // Replace with real data if available
-                        heartRate: Int(heartRate ?? 0),
-                        incline: Int(incline ?? 0),
-                        distanceCovered: 0.0, // Replace with real data if available
-                        time: time,
-                        completion: { (success: Bool, error: Error?) in
-                            if success {
-                                self?.fetchPaceRecommendation()
-                                NotificationCenter.default.post(name: .didReceiveHealthData, object: nil, userInfo: [
-                                    "heartRate": heartRate ?? 0,
-                                    "temperature": temperature ?? 0,
-                                    "incline": incline ?? 0
-                                ])
-                            } else {
-                                print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
-                            }
+                        timestamp: timestamp,
+                        age: 25, // Replace with real data
+                        gender: "male", // Replace with real data
+                        heartRate: heartRate ?? 0,
+                        incline: incline ?? 0,
+                        experience: "beginner", // Replace with real data
+                        goalDistance: 5.0, // Replace with real data
+                        distanceCovered: 0.0 // Replace with real data
+                    ) { (success: Bool, error: Error?) in
+                        if success {
+                            self?.fetchPaceRecommendation()
+                            NotificationCenter.default.post(name: .didReceiveHealthData, object: nil, userInfo: [
+                                "heartRate": heartRate ?? 0,
+                                "temperature": temperature ?? 0,
+                                "incline": incline ?? 0
+                            ])
+                        } else {
+                            print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
                         }
-                    )
+                    }
                 }
                 completionHandler()
             })
@@ -85,29 +85,29 @@ class HealthKitManager {
                     let heartRate = self?.getHeartRate(from: sample) // Replace with real data fetching logic
                     let temperature = self?.getBodyTemperature()
 
-                    let time = "\(Date())"
+                    let timestamp = "\(Date())" // Current time as a string
 
                     NetworkManager.shared.sendHealthData(
-                        ecg: heartRate ?? 0,
-                        temperature: temperature ?? 0,
-                        vo2Max: 0, // Replace with real data if available
-                        heartRate: Int(heartRate ?? 0),
-                        incline: Int(incline ?? 0),
-                        distanceCovered: 0.0, // Replace with real data if available
-                        time: time,
-                        completion: { (success: Bool, error: Error?) in
-                            if success {
-                                self?.fetchPaceRecommendation()
-                                NotificationCenter.default.post(name: .didReceiveHealthData, object: nil, userInfo: [
-                                    "heartRate": heartRate ?? 0,
-                                    "temperature": temperature ?? 0,
-                                    "incline": incline ?? 0
-                                ])
-                            } else {
-                                print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
-                            }
+                        timestamp: timestamp,
+                        age: 25, // Replace with real data
+                        gender: "male", // Replace with real data
+                        heartRate: heartRate ?? 0,
+                        incline: incline ?? 0,
+                        experience: "beginner", // Replace with real data
+                        goalDistance: 5.0, // Replace with real data
+                        distanceCovered: 0.0 // Replace with real data
+                    ) { (success: Bool, error: Error?) in
+                        if success {
+                            self?.fetchPaceRecommendation()
+                            NotificationCenter.default.post(name: .didReceiveHealthData, object: nil, userInfo: [
+                                "heartRate": heartRate ?? 0,
+                                "temperature": temperature ?? 0,
+                                "incline": incline ?? 0
+                            ])
+                        } else {
+                            print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
                         }
-                    )
+                    }
                 }
                 completionHandler()
             })
