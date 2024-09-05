@@ -16,7 +16,7 @@ struct NotificationView: View {
                 Text("확인")
                     .font(.headline)
                     .padding()
-                    .background(Color.green)
+                    .background(Color.blue)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
