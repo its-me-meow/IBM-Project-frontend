@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RunningView: View {
-    var distance: Int
+    var distance: Double
     @State private var timer: Timer?
     @State private var pace: String = "Loading..."
 
@@ -11,7 +11,7 @@ struct RunningView: View {
                 .font(.headline)
                 .padding()
 
-            Text("Goal: \(distance) km")
+            Text("Goal: \(distance, specifier: "%.1f") km")
                 .font(.largeTitle)
                 .padding()
             
@@ -71,20 +71,20 @@ struct RunningView: View {
 
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { _ in
-            let heartRate = 0 // Replace with real data
-            let incline = 0 // Replace with real data
+            let heartRate = 0.0 // Replace with real data
+            let incline = 0.0 // Replace with real data
             let distanceCovered = 0.0 // Replace with real data
-            let vo2max = 0 // Replace with real data
             let time = "\(Date())" // Current time as a string
 
             NetworkManager.shared.sendHealthData(
-                ecg: Double(heartRate),
-                temperature: Double(incline),
-                vo2Max: Double(vo2max),
+                timestamp: time,
+                age: 25, // Replace with real data
+                gender: "male", // Replace with real data
                 heartRate: heartRate,
                 incline: incline,
-                distanceCovered: distanceCovered,
-                time: time
+                experience: "beginner", // Replace with real data
+                goalDistance: distance,
+                distanceCovered: distanceCovered
             ) { success, error in
                 if success {
                     NetworkManager.shared.fetchPaceRecommendation { recommendation, error in
