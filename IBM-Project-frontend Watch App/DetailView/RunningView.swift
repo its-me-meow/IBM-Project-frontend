@@ -4,107 +4,89 @@ struct RunningView: View {
     var distance: Double
     @State private var timer: Timer?
     @State private var pace: String = "Loading..."
+    @State private var isNotificationActive = false
+    @State private var recommendation: String = ""
+    @State private var previousRecommendation: String = "" // 이전 recommendation 저장
+    private let fakeDataSender = FakeDataSender() // FakeDataSender 인스턴스 생성
 
     var body: some View {
         VStack {
-            Text("Running...")
-                .font(.headline)
-                .padding()
-
             Text("Goal: \(distance, specifier: "%.1f") km")
-                .font(.largeTitle)
-                .padding()
+                .font(.title3)
+                .padding(.top)
             
             Text("Pace: \(pace)")
-                .font(.title)
+                .font(.title3)
                 .padding()
 
-            HStack {
+            HStack(spacing: 10) {
                 NavigationLink(destination: DetailView(detail: "경사")) {
-                    VStack {
-                        Image(systemName: "arrow.up.right.circle")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                        Text("경사")
-                    }
+                    Image(systemName: "arrow.up.right.circle")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.primary)
                 }
-                .padding()
-
+                
                 NavigationLink(destination: DetailView(detail: "체온")) {
-                    VStack {
-                        Image(systemName: "thermometer")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                        Text("체온")
-                    }
+                    Image(systemName: "thermometer")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.primary)
                 }
-                .padding()
-
+                
                 NavigationLink(destination: DetailView(detail: "VO2 max")) {
-                    VStack {
-                        Image(systemName: "lungs.fill")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                        Text("VO2 max")
-                    }
+                    Image(systemName: "lungs.fill")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.primary)
                 }
-                .padding()
-
+                
                 NavigationLink(destination: DetailView(detail: "심박수")) {
-                    VStack {
-                        Image(systemName: "heart.fill")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                        Text("심박수")
-                    }
+                    Image(systemName: "heart.fill")
+                        .resizable()
+                        .frame(width: 40, height: 40)
+                        .foregroundColor(.primary)
                 }
-                .padding()
             }
+            .padding(.top, 20)
+            
+            NavigationLink(
+                destination: NotificationView(recommendation: recommendation),
+                isActive: $isNotificationActive,
+                label: {
+                    EmptyView()
+                }
+            )
         }
         .onAppear {
-            startTimer()
-        }
-        .onDisappear {
-            stopTimer()
-        }
-    }
-
-    private func startTimer() {
-        timer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { _ in
-            let heartRate = 0.0 // Replace with real data
-            let incline = 0.0 // Replace with real data
-            let distanceCovered = 0.0 // Replace with real data
-            let time = "\(Date())" // Current time as a string
-
-            NetworkManager.shared.sendHealthData(
-                timestamp: time,
-                age: 25, // Replace with real data
-                gender: "male", // Replace with real data
-                heartRate: heartRate,
-                incline: incline,
-                experience: "beginner", // Replace with real data
-                goalDistance: distance,
-                distanceCovered: distanceCovered
-            ) { success, error in
-                if success {
-                    NetworkManager.shared.fetchPaceRecommendation { recommendation, error in
-                        if let recommendation = recommendation {
-                            DispatchQueue.main.async {
-                                pace = recommendation
-                            }
-                        } else {
-                            print("Failed to fetch pace recommendation: \(error?.localizedDescription ?? "Unknown error")")
-                        }
+            startFakeDataSender()
+            NotificationCenter.default.addObserver(forName: .didReceivePaceRecommendation, object: nil, queue: .main) { notification in
+                if let userInfo = notification.userInfo, let newRecommendation = userInfo["recommendation"] as? String {
+                    if self.previousRecommendation != newRecommendation {
+                        self.recommendation = newRecommendation
+                        self.previousRecommendation = newRecommendation
+                        self.isNotificationActive = true
                     }
-                } else {
-                    print("Failed to send health data: \(error?.localizedDescription ?? "Unknown error")")
                 }
             }
         }
+        .onDisappear {
+            stopFakeDataSender()
+            NotificationCenter.default.removeObserver(self, name: .didReceivePaceRecommendation, object: nil)
+        }
     }
 
-    private func stopTimer() {
-        timer?.invalidate()
-        timer = nil
+    private func startFakeDataSender() {
+        fakeDataSender.startSendingFakeData(age: 25, gender: "male", experience: "beginner", goalDistance: distance)
+    }
+
+    private func stopFakeDataSender() {
+        fakeDataSender.stopSendingFakeData()
+    }
+}
+
+struct RunningView_Previews: PreviewProvider {
+    static var previews: some View {
+        RunningView(distance: 5.0)
     }
 }

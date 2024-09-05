@@ -18,7 +18,7 @@ struct CompletionView: View {
                 Image(systemName: "checkmark.circle.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit) // 이미지 비율 유지하며 크기 조정
-                    .frame(width: 90, height: 90) // 이미지 크기 유지
+                    .frame(width: 40, height: 40) // 이미지 크기 유지
                     .foregroundColor(.green)
                     .padding(.top, 10) // 이미지 상단 여백을 조정하여 텍스트와의 간격 유지
 
@@ -30,7 +30,7 @@ struct CompletionView: View {
                     Text("메인 화면으로 돌아가기")
                         .font(.headline)
                         .padding()
-                        .background(Color.blue)
+                        .background(Color.green)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }

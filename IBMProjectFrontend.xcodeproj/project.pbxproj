@@ -11,6 +11,8 @@
 		850B836B2C81ED0300A48D6D /* IBM_Project_frontendApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850B836A2C81ED0300A48D6D /* IBM_Project_frontendApp.swift */; };
 		850B836F2C81ED0400A48D6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 850B836E2C81ED0400A48D6D /* Assets.xcassets */; };
 		850B83722C81ED0400A48D6D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 850B83712C81ED0400A48D6D /* Preview Assets.xcassets */; };
+		8510EC472C8A1B34001F1A70 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8510EC462C8A1B34001F1A70 /* WebSocketManager.swift */; };
+		8510EC492C8A3C63001F1A70 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8510EC482C8A3C63001F1A70 /* NotificationView.swift */; };
 		852D18C42C8476910012345B /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18C32C8476910012345B /* HealthKitManager.swift */; };
 		852D18CC2C8490890012345B /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852D18CB2C8490890012345B /* InterfaceController.swift */; };
 		8538526C2C87012A00EE646B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8538526B2C87012A00EE646B /* SplashScreenView.swift */; };
@@ -55,6 +57,8 @@
 		850FABE82C88B65A0047EE50 /* FakeDataSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeDataSender.swift; sourceTree = "<group>"; };
 		850FABF02C88BA630047EE50 /* AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITests.swift; sourceTree = "<group>"; };
 		850FABF22C88BA630047EE50 /* AppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		8510EC462C8A1B34001F1A70 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
+		8510EC482C8A3C63001F1A70 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		852D18C32C8476910012345B /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		852D18C52C84772C0012345B /* IBM-Project-frontend Watch App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "IBM-Project-frontend Watch App.entitlements"; sourceTree = "<group>"; };
 		852D18C92C848FAF0012345B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				852D18C82C848F900012345B /* Network */,
 				850B836E2C81ED0400A48D6D /* Assets.xcassets */,
 				850B83702C81ED0400A48D6D /* Preview Content */,
+				8510EC462C8A1B34001F1A70 /* WebSocketManager.swift */,
 			);
 			path = "IBM-Project-frontend Watch App";
 			sourceTree = "<group>";
@@ -161,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				9AB5C1DB2C872ADD00DD27D1 /* CompletionView.swift */,
+				8510EC482C8A3C63001F1A70 /* NotificationView.swift */,
 			);
 			path = EventView;
 			sourceTree = "<group>";
@@ -280,8 +286,10 @@
 				8540DD322C88CB5300B45FEA /* FakeDataSender.swift in Sources */,
 				852D18CC2C8490890012345B /* InterfaceController.swift in Sources */,
 				852D18C42C8476910012345B /* HealthKitManager.swift in Sources */,
+				8510EC472C8A1B34001F1A70 /* WebSocketManager.swift in Sources */,
 				850B836B2C81ED0300A48D6D /* IBM_Project_frontendApp.swift in Sources */,
 				8538526C2C87012A00EE646B /* SplashScreenView.swift in Sources */,
+				8510EC492C8A3C63001F1A70 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

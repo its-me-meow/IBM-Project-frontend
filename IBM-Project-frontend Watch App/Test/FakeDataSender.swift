@@ -10,6 +10,7 @@ class FakeDataSender {
         var heartRate = 85.0
         var incline = 1.0
         var distanceCovered = 0.0
+        var vo2max = 35.0 // 초기 VO2 Max 값
         let timestampFormatter = ISO8601DateFormatter()
 
         // 페이크 데이터 생성
@@ -21,17 +22,19 @@ class FakeDataSender {
                 "gender": gender,
                 "heartRate": heartRate,
                 "incline": incline,
+                "vo2max": vo2max,
                 "experience": experience,
                 "goalDistance": goalDistance,
                 "distanceCovered": distanceCovered
             ]
             fakeData.append(data)
 
-            // 심박수와 거리 증가, 경사도는 20초마다 증가
-            heartRate += 0.5
+            // 심박수, 거리, VO2 Max 증가, 경사도는 10초마다 증가
+            heartRate += 1.0
             distanceCovered += goalDistance / 60
-            if second % 20 == 0 {
-                incline += 1.0
+            vo2max += 0.2
+            if second % 10 == 0 {
+                incline += 2.0
             }
         }
     }
@@ -64,6 +67,7 @@ class FakeDataSender {
               let gender = data["gender"] as? String,
               let heartRate = data["heartRate"] as? Double,
               let incline = data["incline"] as? Double,
+              let vo2max = data["vo2max"] as? Double,
               let experience = data["experience"] as? String,
               let goalDistance = data["goalDistance"] as? Double,
               let distanceCovered = data["distanceCovered"] as? Double else {
@@ -78,12 +82,22 @@ class FakeDataSender {
             gender: gender,
             heartRate: heartRate,
             incline: incline,
+            vo2max: vo2max,
             experience: experience,
             goalDistance: goalDistance,
             distanceCovered: distanceCovered
         ) { success, error in
             if success {
                 print("Data sent successfully: \(data)")
+                // 데이터 전송 후 pace recommendation 요청
+                NetworkManager.shared.fetchPaceRecommendation { recommendation, error in
+                    if let recommendation = recommendation {
+                        print("Received recommendation: \(recommendation)")
+                        NotificationCenter.default.post(name: .didReceivePaceRecommendation, object: nil, userInfo: ["recommendation": recommendation])
+                    } else {
+                        print("Failed to fetch pace recommendation: \(error?.localizedDescription ?? "Unknown error")")
+                    }
+                }
             } else {
                 print("Failed to send data: \(error?.localizedDescription ?? "Unknown error")")
             }
