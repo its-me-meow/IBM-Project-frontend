@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 struct NotificationView: View {
     let recommendation: String
@@ -6,9 +7,12 @@ struct NotificationView: View {
 
     var body: some View {
         VStack {
-            Text(recommendation)
+            Text(extractPace(from: recommendation))
                 .font(.headline)
                 .padding()
+                .onAppear {
+                    speakText(extractPace(from: recommendation))
+                }
 
             Button(action: {
                 presentationMode.wrappedValue.dismiss()
@@ -23,10 +27,27 @@ struct NotificationView: View {
         }
         .padding()
     }
+
+    private func extractPace(from recommendation: String) -> String {
+        // JSON 문자열에서 pace recommendation 값만 추출
+        if let data = recommendation.data(using: .utf8),
+           let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: String],
+           let pace = json["pace recommendation"] {
+            return pace
+        }
+        return recommendation
+    }
+
+    private func speakText(_ text: String) {
+        let utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
+    }
 }
 
 struct NotificationView_Previews: PreviewProvider {
     static var previews: some View {
-        NotificationView(recommendation: "페이스를 변경하세요!")
+        NotificationView(recommendation: "{\"pace recommendation\": \"maintain pace\"}")
     }
 }

@@ -14,10 +14,6 @@ struct RunningView: View {
             Text("Goal: \(distance, specifier: "%.1f") km")
                 .font(.title3)
                 .padding(.top)
-            
-            Text("Pace: \(pace)")
-                .font(.title3)
-                .padding()
 
             HStack(spacing: 10) {
                 NavigationLink(destination: DetailView(detail: "경사")) {

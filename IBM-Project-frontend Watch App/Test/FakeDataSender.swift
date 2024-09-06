@@ -1,16 +1,16 @@
 import Foundation
 
 class FakeDataSender {
-    private var timer: Timer?
-    private var dataIndex = 0
-    private var fakeData: [[String: Any]] = []
+    var timer: Timer? // 접근 제어자를 변경하여 외부에서 접근 가능하게 함
+    var dataIndex = 0 // 접근 제어자를 변경하여 외부에서 접근 가능하게 함
+    var fakeData: [[String: Any]] = [] // 접근 제어자를 변경하여 외부에서 접근 가능하게 함
 
     func generateFakeData(age: Int, gender: String, experience: String, goalDistance: Double) {
         // 초기값 설정
-        var heartRate = 85.0
+        var heartRate = 75.0
         var incline = 1.0
         var distanceCovered = 0.0
-        var vo2max = 35.0 // 초기 VO2 Max 값
+        var vo2max = 43.0 // 초기 VO2 Max 값
         let timestampFormatter = ISO8601DateFormatter()
 
         // 페이크 데이터 생성
@@ -30,11 +30,11 @@ class FakeDataSender {
             fakeData.append(data)
 
             // 심박수, 거리, VO2 Max 증가, 경사도는 10초마다 증가
-            heartRate += 1.0
+            heartRate += 4.0
             distanceCovered += goalDistance / 60
-            vo2max += 0.2
+            vo2max -= 0.2
             if second % 10 == 0 {
-                incline += 2.0
+                incline += 0.01
             }
         }
     }
@@ -54,13 +54,13 @@ class FakeDataSender {
             }
         }
     }
-    
+
     func stopSendingFakeData() {
         print("Stopping fake data sender...") // 종료 로그 출력
         timer?.invalidate()
         timer = nil
     }
-    
+
     private func sendData(data: [String: Any]) {
         guard let timestamp = data["timestamp"] as? String,
               let age = data["age"] as? Int,

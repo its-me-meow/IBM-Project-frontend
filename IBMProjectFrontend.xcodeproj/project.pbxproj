@@ -68,6 +68,7 @@
 		858FD05D2C84680400FEB5C5 /* UserInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputView.swift; sourceTree = "<group>"; };
 		858FD05F2C8468ED00FEB5C5 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
 		858FD0612C8468FD00FEB5C5 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		8595B33F2C8AA0D300BBB287 /* IBM-Project-frontend-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "IBM-Project-frontend-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		9AB5C1DB2C872ADD00DD27D1 /* CompletionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,6 +104,7 @@
 		850B83692C81ED0300A48D6D /* IBM-Project-frontend Watch App */ = {
 			isa = PBXGroup;
 			children = (
+				8595B33F2C8AA0D300BBB287 /* IBM-Project-frontend-Watch-App-Info.plist */,
 				852D18CD2C84920A0012345B /* Test */,
 				852D18C52C84772C0012345B /* IBM-Project-frontend Watch App.entitlements */,
 				850B836A2C81ED0300A48D6D /* IBM_Project_frontendApp.swift */,
@@ -430,7 +432,9 @@
 				DEVELOPMENT_TEAM = 2RNTUQ6XK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IBM-Project-frontend-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "IBM-Project-frontend";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "We need your health data to provide accurate running assistance.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "We need your health data to provide accurate running assistance.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
@@ -463,7 +467,9 @@
 				DEVELOPMENT_TEAM = 2RNTUQ6XK4;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "IBM-Project-frontend-Watch-App-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "IBM-Project-frontend";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "We need your health data to provide accurate running assistance.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "We need your health data to provide accurate running assistance.";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>NSAllowsArbitraryLoads</key>
+	<string></string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>import Foundation
+
+class NetworkManager {
+    static let shared = NetworkManager()
+    
+    private let baseURL = URL(string: &quot;http://0.0.0.0:8000&quot;)!
+    
+    func sendHealthData(timestamp: String, age: Int, gender: String, heartRate: Double, incline: Double, vo2max: Double, experience: String, goalDistance: Double, distanceCovered: Double, completion: @escaping (Bool, Error?) -&gt; Void) {
+        var request = URLRequest(url: baseURL.appendingPathComponent(&quot;/api/send-data&quot;))
+        request.httpMethod = &quot;POST&quot;
+        request.setValue(&quot;application/json&quot;, forHTTPHeaderField: &quot;Content-Type&quot;)
+
+        let body: [String: Any] = [
+            &quot;timestamp&quot;: timestamp,
+            &quot;age&quot;: age,
+            &quot;gender&quot;: gender,
+            &quot;heartRate&quot;: heartRate,
+            &quot;incline&quot;: incline,
+            &quot;vo2max&quot;: vo2max,
+            &quot;experience&quot;: experience,
+            &quot;goalDistance&quot;: goalDistance,
+            &quot;distanceCovered&quot;: distanceCovered
+        ]
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(false, error)
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(false, nil)
+                return
+            }
+
+            completion(true, nil)
+        }
+
+        task.resume()
+    }
+
+    func fetchPaceRecommendation(completion: @escaping (String?, Error?) -&gt; Void) {
+        var request = URLRequest(url: baseURL.appendingPathComponent(&quot;/api/pace-recommendation&quot;))
+        request.httpMethod = &quot;GET&quot;
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+
+            guard let data = data, let httpResponse = response as? HTTPURLResponse else {
+                completion(nil, nil)
+                return
+            }
+
+            print(&quot;Response status code: \(httpResponse.statusCode)&quot;)
+            if httpResponse.statusCode != 200 {
+                completion(nil, nil)
+                return
+            }
+
+            let recommendation = String(data: data, encoding: .utf8)
+            print(&quot;Received data: \(recommendation ?? &quot;No data&quot;)&quot;)
+            completion(recommendation, nil)
+        }
+
+        task.resume()
+    }
+}
+import Foundation
+
+class NetworkManager {
+    static let shared = NetworkManager()
+    
+    private let baseURL = URL(string: &quot;http://0.0.0.0:8000&quot;)!
+    
+    func sendHealthData(timestamp: String, age: Int, gender: String, heartRate: Double, incline: Double, vo2max: Double, experience: String, goalDistance: Double, distanceCovered: Double, completion: @escaping (Bool, Error?) -&gt; Void) {
+        var request = URLRequest(url: baseURL.appendingPathComponent(&quot;/api/send-data&quot;))
+        request.httpMethod = &quot;POST&quot;
+        request.setValue(&quot;application/json&quot;, forHTTPHeaderField: &quot;Content-Type&quot;)
+
+        let body: [String: Any] = [
+            &quot;timestamp&quot;: timestamp,
+            &quot;age&quot;: age,
+            &quot;gender&quot;: gender,
+            &quot;heartRate&quot;: heartRate,
+            &quot;incline&quot;: incline,
+            &quot;vo2max&quot;: vo2max,
+            &quot;experience&quot;: experience,
+            &quot;goalDistance&quot;: goalDistance,
+            &quot;distanceCovered&quot;: distanceCovered
+        ]
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(false, error)
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(false, nil)
+                return
+            }
+
+            completion(true, nil)
+        }
+
+        task.resume()
+    }
+
+    func fetchPaceRecommendation(completion: @escaping (String?, Error?) -&gt; Void) {
+        var request = URLRequest(url: baseURL.appendingPathComponent(&quot;/api/pace-recommendation&quot;))
+        request.httpMethod = &quot;GET&quot;
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+
+            guard let data = data, let httpResponse = response as? HTTPURLResponse else {
+                completion(nil, nil)
+                return
+            }
+
+            print(&quot;Response status code: \(httpResponse.statusCode)&quot;)
+            if httpResponse.statusCode != 200 {
+                completion(nil, nil)
+                return
+            }
+
+            let recommendation = String(data: data, encoding: .utf8)
+            print(&quot;Received data: \(recommendation ?? &quot;No data&quot;)&quot;)
+            completion(recommendation, nil)
+        }
+
+        task.resume()
+    }
+}
+import Foundation
+
+class NetworkManager {
+    static let shared = NetworkManager()
+    
+    private let baseURL = URL(string: &quot;http://0.0.0.0:8000&quot;)!
+    
+    func sendHealthData(timestamp: String, age: Int, gender: String, heartRate: Double, incline: Double, vo2max: Double, experience: String, goalDistance: Double, distanceCovered: Double, completion: @escaping (Bool, Error?) -&gt; Void) {
+        var request = URLRequest(url: baseURL.appendingPathComponent(&quot;/api/send-data&quot;))
+        request.httpMethod = &quot;POST&quot;
+        request.setValue(&quot;application/json&quot;, forHTTPHeaderField: &quot;Content-Type&quot;)
+
+        let body: [String: Any] = [
+            &quot;timestamp&quot;: timestamp,
+            &quot;age&quot;: age,
+            &quot;gender&quot;: gender,
+            &quot;heartRate&quot;: heartRate,
+            &quot;incline&quot;: incline,
+            &quot;vo2max&quot;: vo2max,
+            &quot;experience&quot;: experience,
+            &quot;goalDistance&quot;: goalDistance,
+            &quot;distanceCovered&quot;: distanceCovered
+        ]
+        
+        request.httpBody = try? JSONSerialization.data(withJSONObject: body, options: [])
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(false, error)
+                return
+            }
+
+            guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+                completion(false, nil)
+                return
+            }
+
+            completion(true, nil)
+        }
+
+        task.resume()
+    }
+
+    func fetchPaceRecommendation(completion: @escaping (String?, Error?) -&gt; Void) {
+        var request = URLRequest(url: baseURL.appendingPathComponent(&quot;/api/pace-recommendation&quot;))
+        request.httpMethod = &quot;GET&quot;
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(nil, error)
+                return
+            }
+
+            guard let data = data, let httpResponse = response as? HTTPURLResponse else {
+                completion(nil, nil)
+                return
+            }
+
+            print(&quot;Response status code: \(httpResponse.statusCode)&quot;)
+            if httpResponse.statusCode != 200 {
+                completion(nil, nil)
+                return
+            }
+
+            let recommendation = String(data: data, encoding: .utf8)
+            print(&quot;Received data: \(recommendation ?? &quot;No data&quot;)&quot;)
+            completion(recommendation, nil)
+        }
+
+        task.resume()
+    }
+}
+NSAppTransportSecurity</key>
+	<string></string>
+</dict>
+</plist>

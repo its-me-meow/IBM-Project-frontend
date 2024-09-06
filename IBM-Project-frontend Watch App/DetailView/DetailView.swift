@@ -1,132 +1,73 @@
 import SwiftUI
-import HealthKit
 
 struct DetailView: View {
     var detail: String
     @State private var healthData: String = "Loading..."
-
-    private let healthStore = HKHealthStore()
-    private var heartRateType = HKObjectType.quantityType(forIdentifier: .heartRate)!
-    private var inclineType = HKObjectType.quantityType(forIdentifier: .stepCount)!
-
-    init(detail: String) {
-        self.detail = detail
-    }
-
+    @State private var timer: Timer?
+    private let fakeDataSender = FakeDataSender()
+    
     var body: some View {
         VStack {
             Text(detail)
                 .font(.title2)
-                .padding(.bottom, 30)
-
-            if detail == "경사" {
-                Image(systemName: "arrow.up.right.circle")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.gray)
-                Text(healthData)
-                    .font(.title3)
-                    .padding()
-                    .onAppear {
-                        requestAuthorization {
-                            fetchInclineData()
-                        }
-                    }
-            } else if detail == "심박수" {
-                Image(systemName: "heart.fill")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.gray)
-                Text(healthData)
-                    .font(.title3)
-                    .padding()
-                    .onAppear {
-                        requestAuthorization {
-                            fetchHeartRateData()
-                        }
-                    }
-            } else if detail == "체온" {
-                Image(systemName: "thermometer")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.gray)
-                Text(healthData)
-                    .font(.title3)
-                    .padding()
-                    .onAppear {
-                        requestAuthorization {
-                            fetchHeartRateData()
-                        }
-                    }
-            } else if detail == "VO2 max" {
-                Image(systemName: "lungs.fill")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(.gray)
-                Text(healthData)
-                    .font(.title3)
-                    .padding()
-                    .onAppear {
-                        requestAuthorization {
-                            fetchHeartRateData()
-                        }
-                    }
-            } 
+                .padding()
             
-            Spacer()
-            
+            Text(healthData)
+                .font(.subheadline)
+                .padding(.bottom)
+                .font(.body) // 폰트 크기를 조정하여 텍스트를 더 작게 만듦
+        }
+        .onAppear {
+            startFakeDataSender()
+        }
+        .onDisappear {
+            stopFakeDataSender()
         }
     }
-
+    
     @Environment(\.presentationMode) var presentationMode
-
-    private func requestAuthorization(completion: @escaping () -> Void) {
-        let typesToShare: Set<HKSampleType> = []
-        let typesToRead: Set<HKObjectType> = [heartRateType, inclineType]
-
-        healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { success, error in
-            if success {
-                completion()
-            } else {
-                DispatchQueue.main.async {
-                    healthData = "Authorization failed"
-                }
-            }
+    
+    private func startFakeDataSender() {
+        fakeDataSender.generateFakeData(age: 25, gender: "male", experience: "beginner", goalDistance: 5.0)
+        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            self.updateData()
         }
+        fakeDataSender.startSendingFakeData(age: 25, gender: "male", experience: "beginner", goalDistance: 5.0)
     }
-
-    private func fetchInclineData() {
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        let query = HKSampleQuery(sampleType: inclineType, predicate: nil, limit: 1, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
-            guard let samples = samples as? [HKQuantitySample], let sample = samples.first else {
-                DispatchQueue.main.async {
-                    healthData = "No data available"
-                }
-                return
-            }
-            let incline = sample.quantity.doubleValue(for: HKUnit.count())
-            DispatchQueue.main.async {
-                healthData = "Incline: \(incline)"
-            }
-        }
-        healthStore.execute(query)
+    
+    private func stopFakeDataSender() {
+        fakeDataSender.stopSendingFakeData()
+        timer?.invalidate()
+        timer = nil
     }
-
-    private func fetchHeartRateData() {
-        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: false)
-        let query = HKSampleQuery(sampleType: heartRateType, predicate: nil, limit: 1, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
-            guard let samples = samples as? [HKQuantitySample], let sample = samples.first else {
-                DispatchQueue.main.async {
-                    healthData = "No data available"
-                }
-                return
-            }
-            let heartRate = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
-            DispatchQueue.main.async {
-                healthData = "Heart Rate: \(heartRate) BPM"
-            }
+    
+    private func updateData() {
+        guard fakeDataSender.dataIndex < fakeDataSender.fakeData.count else {
+            stopFakeDataSender()
+            return
         }
-        healthStore.execute(query)
+        
+        let data = fakeDataSender.fakeData[fakeDataSender.dataIndex]
+        switch detail {
+        case "경사":
+            if let incline = data["incline"] as? Double {
+                self.healthData = String(format: "%.1f", incline)
+            }
+        case "체온":
+            if let heartRate = data["heartRate"] as? Double {
+                self.healthData = String(format: "%.1f BPM", heartRate)
+            }
+        case "VO2 max":
+            if let vo2max = data["vo2max"] as? Double {
+                self.healthData = String(format: "%.1f mL/kg/min", vo2max)
+            }
+        case "심박수":
+            if let heartRate = data["heartRate"] as? Double {
+                self.healthData = String(format: "%.1f", heartRate)
+            }
+        default:
+            self.healthData = "No data available"
+        }
     }
 }
 

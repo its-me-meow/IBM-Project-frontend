@@ -18,9 +18,8 @@ struct CompletionView: View {
                 Image(systemName: "checkmark.circle.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit) // 이미지 비율 유지하며 크기 조정
-                    .frame(width: 40, height: 40) // 이미지 크기 유지
+                    .frame(width: 20, height: 20) // 이미지 크기 유지
                     .foregroundColor(.green)
-                    .padding(.top, 10) // 이미지 상단 여백을 조정하여 텍스트와의 간격 유지
 
                 Spacer() // 아래 여유 공간 추가로 "메인 화면으로 돌아가기" 버튼을 아래로 밀어냄
 
